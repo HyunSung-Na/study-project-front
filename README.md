@@ -6,4 +6,4 @@
 
 3. 주요 기능 : 로그인, 회원가입, 자유게시판, 좋아요, 댓글, 스터디게시판, 페이징, RestfulAPI<br>
 
-4. 프로젝트 Backend Code 입니다!
+4. 프로젝트 frontend Code 입니다!
