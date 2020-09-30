@@ -4,13 +4,17 @@ import {Checkbox, Form, Input, Button, notification} from "antd";
 import styled from 'styled-components';
 import Head from "next/head";
 import useInput from "../hooks/useInput";
-import {signup} from "../util/APIUtils";
 import axios from 'axios';
-import {ACCESS_TOKEN} from "../constants";
 
 const ErrorMessage = styled.div`
        color: red;
 `;
+
+const FormWrapper = styled(Form)`
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20px;
+`
 
 const Signup = () => {
     const [email, onChangeEmail] = useInput('');
@@ -37,21 +41,9 @@ const Signup = () => {
             return setPasswordError(true);
         }
 
-
-        const joinRequest = {
-            name: user_name,
-            email: email,
-            password: password
-        };
         const headers = new Headers({
             'Content-Type': 'application/json',
         })
-
-        if(localStorage.getItem(ACCESS_TOKEN)) {
-            headers.append('Authorization', 'Bearer ' + localStorage.getItem(ACCESS_TOKEN))
-        }
-
-        console.log(joinRequest)
         axios.request({
             method: 'POST',
             url: 'http://localhost:8080/api/user/join',
@@ -67,7 +59,6 @@ const Signup = () => {
                     description: "Thank you! You're successfully registered. Please Login to continue!",
                 });
             }).catch(error => {
-                console.log(joinRequest)
             notification.error({
                 message: 'study App',
                 description: error.message || 'Sorry! Something went wrong. Please try again!'
@@ -80,9 +71,9 @@ const Signup = () => {
         <>
             <AppLayout>
                 <Head>
-                    <title>회원가입 | NodeBird</title>
+                    <title>회원가입 | study-infinite</title>
                 </Head>
-                <Form onFinish={onSubmit}>
+                <FormWrapper onFinish={onSubmit}>
                     <div>
                         <label htmlFor="user-id">이메일</label>
                         <br />
@@ -114,7 +105,7 @@ const Signup = () => {
                     <div style={{ margin: 10 }}>
                         <Button type="primary" htmlType="submit">가입하기</Button>
                     </div>
-                </Form>
+                </FormWrapper>
             </AppLayout>
         </>
     )

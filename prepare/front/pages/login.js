@@ -12,6 +12,9 @@ const ButtonWrapper = styled.div`
 
 const FormWrapper = styled(Form)`
     padding: 10px;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 20px;
 `
 
 const Login = () => {
